@@ -1,4 +1,5 @@
 from app import db
+import json
 
 
 class Comics(db.Model):
@@ -22,6 +23,8 @@ class Comics(db.Model):
 
     def __str__(self) -> str:
         return 'id: ' + str(self.id) + ' title: ' + self.title
+
+
 
 
 class Character(db.Model):
