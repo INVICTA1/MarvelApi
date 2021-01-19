@@ -1,5 +1,8 @@
-from app import db
+from app import db, ma
 import json
+from marshmallow_sqlalchemy import ModelSchema
+from marshmallow import fields
+from datetime import datetime
 
 
 class Comics(db.Model):
@@ -22,9 +25,30 @@ class Comics(db.Model):
     characters = db.relationship("Character")
 
     def __str__(self) -> str:
-        return 'id: ' + str(self.id) + ' title: ' + self.title
+        return 'id: {0} title: {1}'.format(self.id, self.title)
 
-
+    def __init__(self,id, digitalId, title, issueNumber, variantDescription, modified,description, isbn, upc, diamondCode, ean,
+                 issn, format, pageCount, resourceURI,characters=[]):
+        self.id = id
+        self.digitalId = digitalId
+        self.title = title
+        self.issueNumber = issueNumber
+        self.variantDescription = variantDescription
+        self.description = description
+        self.modified = datetime.now()
+        self.isbn = isbn
+        self.upc = upc
+        self.diamondCode = diamondCode
+        self.ean = ean
+        self.issn = issn
+        self.format = format
+        self.pageCount = pageCount
+        self.resourceURI = resourceURI
+        self.characters = characters
+    def create(self):
+        db.session.add(self)
+        db.session.commit()
+        return self
 
 
 class Character(db.Model):
@@ -34,6 +58,34 @@ class Character(db.Model):
     collectionURI = db.Column(db.String(140))
     returned = db.Column(db.Integer)
     comic_id = db.Column(db.Integer, db.ForeignKey('comics.id'))
+
+class CharacterSchema(ModelSchema):
+    class Meta:
+        model = Character
+        sqla_session = db.session
+
+class ComicsSchema(ModelSchema):
+    class Meta:
+        model = Comics
+        sqla_session = db.session
+    id = fields.Integer()
+    digitalId = fields.Integer()
+    title = fields.String(required=True)
+    issueNumber = fields.Integer()
+    variantDescription = fields.String(required=True)
+    description = fields.String(required=True)
+    modified = fields.DateTime(default=datetime.now())
+    isbn = fields.String(required=True)
+    upc = fields.Integer()
+    diamondCode = fields.String(required=True)
+    ean = fields.String(required=True)
+    issn = fields.String(required=True)
+    format = fields.String(required=True)
+    pageCount = fields.Integer()
+    resourceURI = fields.String(required=True)
+    characters = fields.Nested(CharacterSchema,many=True)
+
+
 
 
 # class UrlsComics(db.Model):
