@@ -1,4 +1,4 @@
-from flask import Blueprint, request,jsonify,make_response
+from flask import Blueprint, request, jsonify, make_response
 from models import *
 import service
 from models import ComicsSchema
@@ -30,17 +30,20 @@ def get_comics_by_id(id: int) -> dict:
 @comics.route('/characters', methods=['Post'])
 def add_comics() -> dict:
     data = request.get_json(force=True)
-    comic =  comic_schema.load(data)
-    print(type(comic))
-    # result = service.add_comics(comic)
-    result = comic_schema.dump(comic.create())
-    return make_response(jsonify({"comic": result}),201)
+    comic = comic_schema.load(data)
+    comic_object = service.add_comics(comic)
+    result = comic_schema.dump(comic_object)
+    return make_response(jsonify({"comic": result}), 201)
 
-@comics.route('/characters/<id>', methods=['Post'])
-def update_comics_by_id(id) -> str:
+
+@comics.route('/characters/<id>', methods=['PUT'])
+def update_comics_by_id(id) :
     data = request.get_json(force=True)
     get_comic = Comics.query.get(id)
+    get_comic = service.update_comics_by_id(data,get_comic)
+    result = comic_schema.dump(get_comic)
+    return make_response(jsonify({"comic": result}), 201)
 
-    comic =  comic_schema.load(data)
-    result = comic_schema.dump(comic.create())
-    return make_response(jsonify({"comic": result}),201)
+    # comic = comic_schema.load(data)
+    # result = comic_schema.dump(comic.create())
+    # return make_response(jsonify({"comic": result}), 201)
