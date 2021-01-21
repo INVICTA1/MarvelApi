@@ -5,6 +5,7 @@ from flask_marshmallow import Marshmallow
 
 app = Flask(__name__)
 app.config.from_object(Config)
+
 ma = Marshmallow(app)
 
 db = SQLAlchemy(app)

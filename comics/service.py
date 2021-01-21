@@ -1,9 +1,8 @@
-import database
-from models import Comics
+from comics.models import Comics
+from comics import database
 
 
 def get_comics() -> list:
-    # дергнуть database
     return database.get_comics()
 
 
@@ -19,3 +18,10 @@ def update_comics_by_id(data, get_comic: Comics):
     return database.update_comics_by_id(get_comic)
 
 
+def delete_comics_by_id(id):
+    get_comic = Comics.query.get(id)
+    if get_comic:
+        database.delete_comics_by_id(get_comic)
+        return 200
+    else:
+        return 404
