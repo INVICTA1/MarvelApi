@@ -36,8 +36,8 @@ def add_comics() -> dict:
 def update_comics_by_id(id):
     data = request.get_json(force=True)
     get_comic = Comics.query.get(id)
-    get_comic = service.update_comics_by_id(data, get_comic)
-    result = comic_schema.dump(get_comic)
+    update_comic = service.update_comics_by_id(data, get_comic)
+    result = comic_schema.dump(update_comic)
     return make_response(jsonify({"comic": result}))
 
 
