@@ -1,4 +1,4 @@
-from app import db, ma
+from src.app import db
 from marshmallow_sqlalchemy import ModelSchema
 
 

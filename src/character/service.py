@@ -1,5 +1,5 @@
-from character import database
-from character.models import Character
+from src.character import database
+from src.character.models import Character
 
 
 def get_characters() -> list:

@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response
-from creators.models import CreatorSchema, Creator
-from creators import service
+from src.creators.models import CreatorSchema, Creator
+from src.creators import service
 
 creators = Blueprint('creators', __name__)
 creator_schema = CreatorSchema()

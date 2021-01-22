@@ -1,5 +1,5 @@
-from creators.models import Creator
-from app import db
+from src.creators.models import Creator
+from src.app import db
 
 
 def get_creators() -> list:

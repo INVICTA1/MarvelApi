@@ -1,4 +1,4 @@
-from comics.models import *
+from src.comics.models import *
 
 
 def get_comics() -> list:

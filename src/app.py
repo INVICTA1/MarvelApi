@@ -1,5 +1,5 @@
 from flask import Flask
-from config import Config
+from src.config import Config
 from flask_sqlalchemy import SQLAlchemy
 from flask_marshmallow import Marshmallow
 

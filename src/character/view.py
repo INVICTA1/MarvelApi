@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response
-from character.models import CharacterSchema, Character
-from character import service
+from src.character.models import CharacterSchema, Character
+from src.character import service
 
 characters = Blueprint('characters', __name__)
 

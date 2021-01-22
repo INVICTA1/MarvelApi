@@ -1,6 +1,6 @@
 from flask import Blueprint, request, jsonify, make_response
-from comics.models import ComicsSchema, Comics
-from comics import service
+from src.comics.models import ComicsSchema, Comics
+from src.comics import service
 
 comics = Blueprint('comics', __name__)
 

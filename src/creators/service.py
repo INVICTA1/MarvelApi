@@ -1,5 +1,5 @@
-from creators.models import Creator
-from creators import database
+from src.creators.models import Creator
+from src.creators import database
 from datetime import datetime
 
 def get_creators() -> list:

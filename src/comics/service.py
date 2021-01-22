@@ -1,5 +1,5 @@
-from comics.models import Comics
-from comics import database
+from src.comics.models import Comics
+from src.comics import database
 
 
 def get_comics() -> list:

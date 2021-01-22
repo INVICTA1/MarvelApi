@@ -1,7 +1,10 @@
 from marshmallow_sqlalchemy import ModelSchema
-from comics.models import Comics, ComicsSchema
-from app import db
+from src.comics.models import Comics, ComicsSchema
+from src.app import db
 from marshmallow import fields
+# from sqlalchemy.ext.declarative import declarative_base
+# Base = declarative_base()
+
 
 creator_comics = db.Table('creator_comics',
                           db.Column('creator_id', db.Integer, db.ForeignKey('creator.id')),

@@ -1,4 +1,4 @@
-from character.models import *
+from src.character.models import *
 
 
 def get_characters() -> list:

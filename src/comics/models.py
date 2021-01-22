@@ -1,8 +1,8 @@
-from app import db, ma
+from src.app import db
 from marshmallow_sqlalchemy import ModelSchema
 from marshmallow import fields
 from datetime import datetime
-from character.models import CharacterSchema
+from src.character.models import CharacterSchema
 
 
 class Comics(db.Model):
