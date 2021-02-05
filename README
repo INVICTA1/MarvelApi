@@ -1,0 +1,14 @@
+<h5>Docker</h5>
+<p>There two options to start application using docker:</p>
+<ul>
+<li>Using Dockerfile and start 2 docker files (Mysql, App)
+<ol>
+    <li>Create network: <b>docker network create network</b></li>
+    <li>Create Mysql image:<b>docker build -t mysql-image:latest --file Dockerfile-mysql .</b></li>
+    <li>Launch Mysql container: <b>docker run -d -p 3307:3306 --network=network --name=mysql-container mysql-image</b></li>
+    <li>Create image:<b>docker build --file Dockerfile-app -t app-image:latest .</b></li>
+    <li>Launch App container: <b>docker run -d -p 5001:5000 --name=app-container --network=network app-image</b></li>
+</ol>
+</li>
+<li>Using Docker-compose and start 2 containers at the same time</li>
+</ul>
